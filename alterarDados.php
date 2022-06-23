@@ -1,18 +1,4 @@
 <?php
-<<<<<<< HEAD
-    session_start();
-
-    $verificaUsuarioLogado = $_SESSION['verificaUsuarioLogado'];
-
-    if (!$verificaUsuarioLogado){
-        header("Location: index.php?codMsg=003");
-    } else{
-        include "conectaBanco.php";
-        
-        $nomeUsuarioLogado = $_SESSION['nomeUsuarioLogado'];
-        $codigoUsuarioLogado = $_SESSION['codigoUsuarioLogado'];
-    }
-=======
 session_start();
 
 $verificaUsuarioLogado = $_SESSION['verificaUsuarioLogado'];
@@ -25,7 +11,6 @@ if (!$verificaUsuarioLogado) {
     $nomeUsuarioLogado = $_SESSION['nomeUsuarioLogado'];
     $codigoUsuarioLogado = $_SESSION['codigoUsuarioLogado'];
 }
->>>>>>> ce0ff0d4ee90593888656c0731d647d3277f0dba
 ?>
 
 <!DOCTYPE html>
@@ -99,13 +84,8 @@ if (!$verificaUsuarioLogado) {
                     <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Pesquisar</button>
                 </form>
                 <span class="navbar-text ml-4">
-<<<<<<< HEAD
-                        Olá <b><?= $nomeUsuarioLogado ?></b>, seja bem-vindo(a)!
-                    </span>
-=======
                     Olá <b><?= $nomeUsuarioLogado ?></b>, seja bem-vindo(a)!
                 </span>
->>>>>>> ce0ff0d4ee90593888656c0731d647d3277f0dba
             </div>
         </div>
     </nav>
@@ -114,15 +94,6 @@ if (!$verificaUsuarioLogado) {
             <div class="row">
                 <div class="col-sm"></div>
                 <div class="col-sm-12">
-<<<<<<< HEAD
-                <?php
-                $flagErro = False;
-
-                    if (isset($_POST['acao'])){
-                        $acao = $_POST['acao'];
-
-                        if ($acao == "salvar"){
-=======
                     <?php
                     $flagErro = False;
 
@@ -130,7 +101,6 @@ if (!$verificaUsuarioLogado) {
                         $acao = $_POST['acao'];
 
                         if ($acao == "salvar") {
->>>>>>> ce0ff0d4ee90593888656c0731d647d3277f0dba
                             $nomeUsuario = $_POST['nomeUsuario'];
                             $mailUsuario = $_POST['mailUsuario'];
                             $mail2Usuario = $_POST['mail2Usuario'];
@@ -138,69 +108,6 @@ if (!$verificaUsuarioLogado) {
                             $senhaUsuario = $_POST['senhaUsuario'];
                             $senha2Usuario = $_POST['senha2Usuario'];
 
-<<<<<<< HEAD
-                            if (!empty($nomeUsuario) && !empty($mailUsuario) && !empty($mail2Usuario) && !empty($senhaAtualUsuario) 
-                                && !empty($senhaUsuario) && !empty($senha2Usuario)){
-                                
-                                if ($mailUsuario == $mail2Usuario && $senhaUsuario == $senha2Usuario){
-
-                                    if (strlen($nomeUsuario) >= 5 && strlen($senhaUsuario) >= 8){
-                                        $senhaAtualUsuarioMD5 = md5($senhaAtualUsuario);
-                                        
-                                            $sqlSenhaUsuario = "SELECT codigoUsuario FROM usuarios WHERE codigoUsuario=:codigoUsuario AND senhaUsuario=:senhaUsuario";
-
-                                            $sqlSenhaUsuarioST = $conexao->prepare($sqlSenhaUsuario);
-
-                                            $sqlSenhaUsuarioST->bindValue(':codigoUsuario', $codigoUsuarioLogado);
-                                            $sqlSenhaUsuarioST->bindValue(':senhaUsuario', $senhaAtualUsuarioMD5);
-
-                                            $sqlSenhaUsuarioST->execute();
-                                            $quantidadeUsuarios = $sqlSenhaUsuarioST->rowCount();
-
-                                            if ($quantidadeUsuarios == 1){
-                                                $sqlUsuarios = "SELECT codigoUsuario FROM usuarios WHERE mailUsuario=:mailUsuario AND codigoUsuario<>:codigoUsuario";
-
-                                                $sqlUsuariosST = $conexao->prepare($sqlUsuarios);
-
-                                                $sqlUsuariosST->bindValue(':mailUsuario', $mailUsuario);
-                                                $sqlUsuariosST->bindValue(':codigoUsuario', $codigoUsuarioLogado);
-
-                                                $sqlUsuariosST->execute();
-                                                $quantidadeUsuarios = $sqlUsuariosST->rowCount();
-
-                                                if ($quantidadeUsuarios == 0) {
-                                                    $senhaUsuarioMD5 = md5($senhaUsuario);
-
-                                                    if ($senhaAtualUsuarioMD5 == $senhaUsuario) {
-                                                        $senhaUsuarioMD5 = $senhaAtualUsuarioMD5;
-                                                    }
-                    
-                                                    $sqlEditarUsuario = "UPDATE usuarios SET nomeUsuario=:nomeUsuario, mailUsuario=:mailUsuario,senhaUsuario=:senhausuario WHERE codigoUsuario=:codigoUsuario";
-                    
-                                                    $sqlEditarUsuarioST = $conexao->prepare($sqlEditarUsuario);
-                                                    $sqlEditarUsuarioST->bindValue(':codigoUsuario', $codigoUsuarioLogado);
-                                                    $sqlEditarUsuarioST->bindValue(':nomeUsuario', $nomeUsuario);
-                                                    $sqlEditarUsuarioST->bindValue(':mailUsuario', $mailUsuario);
-                                                    $sqlEditarUsuarioST->bindValue(':senhaUsuario', $senhaUsuarioMD5);
-                    
-                                                    if ($sqlEditarUsuarioST->execute()) {
-                                                        $mensagemAcao = "Cadastro de usuário editado com sucesso.";
-                                                        
-                                                    } else {
-                                                        $flagErro = True;
-                                                        $mensagemAcao = "Código erro: " . $sqlNovoUsuarioST->errorCode();
-                                                    }
-                                                } else {    
-                                                    $flagErro = True;    
-                                                    $mensagemAcao = "E-mail já cadastrado para outro usuário.";
-                                                }
-
-                                            } else{
-                                                $flagErro = True;
-                                                $mensagemAcao = "A senha atual informada está incorreta.";
-
-                                            }
-=======
                             if (
                                 !empty($nomeUsuario) && !empty($mailUsuario) && !empty($mail2Usuario) && !empty($senhaAtualUsuario)
                                 && !empty($senhaUsuario) && !empty($senha2Usuario)
@@ -263,38 +170,22 @@ if (!$verificaUsuarioLogado) {
                                             $flagErro = True;
                                             $mensagemAcao = "A senha atual informada está incorreta.";
                                         }
->>>>>>> ce0ff0d4ee90593888656c0731d647d3277f0dba
                                     } else {
                                         $flagErro = True;
                                         $mensagemAcao = "Informe a quantidade mínima de caracteres para cada campo: Nome (5), Senha (8).";
                                     }
-<<<<<<< HEAD
-
-=======
->>>>>>> ce0ff0d4ee90593888656c0731d647d3277f0dba
                                 } else {
                                     $flagErro = True;
                                     $mensagemAcao = "Os campos de confirmação de e-mail e senha devem ser preenchidos com os respectivos valores.";
                                 }
-<<<<<<< HEAD
-
-=======
->>>>>>> ce0ff0d4ee90593888656c0731d647d3277f0dba
                             } else {
                                 $flagErro = True;
                                 $mensagemAcao = "Preencha todos os campos obrigatórios (*).";
                             }
-<<<<<<< HEAD
-                           
-                            if (!$flagErro) {
-                                $classeMensagem = "alert-success";
-                            } else{
-=======
 
                             if (!$flagErro) {
                                 $classeMensagem = "alert-success";
                             } else {
->>>>>>> ce0ff0d4ee90593888656c0731d647d3277f0dba
                                 $classeMensagem = "alert-danger";
                             }
 
@@ -306,11 +197,8 @@ if (!$verificaUsuarioLogado) {
                                 </div>";
                         }
                     } else {
-<<<<<<< HEAD
-=======
                         $codigoUsuarioLogado = $_SESSION['codigoUsuarioLogado'];
 
->>>>>>> ce0ff0d4ee90593888656c0731d647d3277f0dba
                         $sqlUsuario = "SELECT nomeUsuario, mailUsuario, senhaUsuario FROM usuarios WHERE codigoUsuario=:codigoUsuario";
 
                         $sqlUsuarioST = $conexao->prepare($sqlUsuario);
@@ -334,109 +222,6 @@ if (!$verificaUsuarioLogado) {
                         </div>
                         <div class="card-body">
                             <form id="novoUsuario" method="post" action="alterarDados.php">
-<<<<<<< HEAD
-								<input type="hidden" name="acao" value="salvar">
-								<div class="form-group">
-									<label for="nomeUsuario">Nome*</label>
-									<div class="input-group">
-										<div class="input-group-prepend">
-											<div class="input-group-text">
-												<i class="bi-person-bounding-box"></i>
-											</div>
-										</div>
-										<input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario"
-											placeholder="Digite seu nome" value="<?= $nomeUsuario ?>" required>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm">
-										<div class="form-group">
-											<label for="mailUsuario"> E-mail*</label>
-											<div class="input-group">
-												<div class="input-group-prepend">
-													<div class="input-group-text">
-														<i class="bi-at"></i>
-													</div>
-												</div>
-												<input type="email" class="form-control" id="mailUsuario"
-													name="mailUsuario" placeholder="Digite seu e-mail" value="<?= $mailUsuario ?>" required>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm">
-										<div class="form-group">
-											<label for="mail2Usuario">Repita o E-mail*</label>
-											<div class="input-group">
-												<div class="input-group-prepend">
-													<div class="input-group-text">
-														<i class="bi-at"></i>
-													</div>
-												</div>
-												<input type="email" class="form-control" id="mail2Usuario"
-													name="mail2Usuario" placeholder="Repita seu e-mail" value="<?= $mail2Usuario ?>" required>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm">
-										<div class="form-group">
-											<label for="senhaAtualUsuario"> Senha Atual*</label>
-											<div class="input-group">
-												<div class="input-group-prepend">
-													<div class="input-group-text">
-														<i class="bi-key"></i>
-													</div>
-												</div>
-												<input type="password" class="form-control" id="senhaAtualUsuario"
-												name="senhaAtualUsuario" placeholder="Digite sua senha atual" required>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm"></div>
-								</div>
-								<div class="row">
-									<div class="col-sm">
-										<div class="form-group">
-											<label for="senhaUsuario">Nova Senha*</label>
-											<div class="input-group">
-												<div class="input-group-prepend">
-													<div class="input-group-text">
-														<i class="bi-key"></i>
-													</div>
-												</div>
-												<input type="password" class="form-control" id="senhaUsuario"
-													name="senhaUsuario" placeholder="Digite sua nova senha" value="<?= $senhaUsuario ?>" required>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm">
-										<div class="form-group">
-											<label for="senha2Usuario">Repita a nova senha*</label>
-											<div class="input-group">
-												<div class="input-group-prepend">
-													<div class="input-group-text">
-														<i class="bi-key"></i>
-													</div>
-												</div>
-												<input type="password" class="form-control" id="senha2Usuario"
-													name="senha2Usuario" placeholder="Repita sua nova senha" value="<?= $senha2Usuario ?>" required>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row" id="campo_senha">
-									<div class="col-sm barra_senha"></div>
-									<div class="col-sm"></div>
-								</div>
-								<div class="row">
-									<div class="col-sm text-right">
-										<button input type="submit" class="btn btn-outline-info">Salvar</button>
-									</div>
-								</div>
-							</form>
-=======
                                 <input type="hidden" name="acao" value="salvar">
                                 <div class="form-group">
                                     <label for="nomeUsuario">Nome*</label>
@@ -532,7 +317,6 @@ if (!$verificaUsuarioLogado) {
                                     </div>
                                 </div>
                             </form>
->>>>>>> ce0ff0d4ee90593888656c0731d647d3277f0dba
                         </div>
                     </div>
                 </div>
@@ -563,53 +347,6 @@ if (!$verificaUsuarioLogado) {
         </div>
     </div>
 </body>
-<<<<<<< HEAD
-    <script>
-        jQuery.validator.setDefaults({
-            errorElement: 'span',
-            errorPlacement: function (error, element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight: function (element, errorClass, validClass) {
-                $(element).addClass('is-invalid');
-            },
-            unhighlight: function (element, errorClass, validClass) {
-                $(element).removeClass('is-invalid');
-            }
-        });
-        $(document).ready(function () {
-            $("#novoUsuario").validate({
-                rules: {
-                    nomeUsuario: {
-                        minlength: 5
-                    },
-                    mail2Usuario: {
-                        equalTo:"#mailUsuario"
-                    },
-                    senha2Usuario: {
-                        equalTo: "#senhaUsuario"
-                    },
-                    senhaUsuario: {
-                        minlength: 8
-                    }
-                }
-            });
-            jQuery(document).ready(function () {
-                "use strict";
-                var options = {};
-                options.ui = {
-                    container: "#campo_senha",
-                    viewports: {
-                        progress: ".barra_senha"
-                    },
-                    showVerdictsInsideProgressBar: true
-                };
-                $('#senhaUsuario').pwstrength(options);
-            });
-        });
-    </script>
-=======
 <script>
     jQuery.validator.setDefaults({
         errorElement: 'span',
@@ -656,5 +393,4 @@ if (!$verificaUsuarioLogado) {
     });
 </script>
 
->>>>>>> ce0ff0d4ee90593888656c0731d647d3277f0dba
 </html>

@@ -120,7 +120,7 @@
                                             $busca = '%%';
                                         }
 
-                                        $sqlContatos = "SELECT codigoContato, nomeContato, mailContato, telefone1Contato FROM contatos WHERE    codigoUsuario=:codigoUsuario AND nomeContato LIKE %:busca% ORDER BY nomeContato";
+                                        $sqlContatos = "SELECT codigoContato, nomeContato, mailContato, telefone1Contato FROM contatos WHERE    codigoUsuario=:codigoUsuario AND nomeContato LIKE :busca ORDER BY nomeContato";
 
                                         $sqlContatosST = $conexao->prepare($sqlContatos);
                                         $sqlContatosST->bindValue(':codigoUsuario', $codigoUsuarioLogado);
